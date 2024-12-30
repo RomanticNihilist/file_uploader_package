@@ -2,6 +2,41 @@
 
 A simple and customizable file picker widget for Flutter, allowing users to pick files from their device or web application. This package supports multi-file picking, file type filtering, and file compression options.
 
+# Important Notes for Project Setup
+
+1. **Update Gradle Version:**
+    - Navigate to the `android` folder inside the project directory:
+      ```bash
+      cd android
+      ```
+    - Run the following command to set the Gradle version to 8.5:
+      ```bash
+      ./gradlew wrapper --gradle-version=8.5
+      ```
+
+2. **Modify Android Settings:**
+    - Open the `android/settings.gradle` file.
+    - Locate the following line:
+      ```gradle
+      id "com.android.application" version "8.1.0" apply false
+      ```
+    - Update it to:
+      ```gradle
+      id "com.android.application" version "8.2.1" apply false
+      ```
+
+3. **Set Java Version:**
+    - Ensure the system's Java version is `JDK 17`.
+    - The `JAVA_HOME` environment variable must be set to the JDK installation path.
+        - On macOS/Linux, add the following line to your `~/.bashrc` or `~/.zshrc`:
+          ```bash
+          export JAVA_HOME=/path/to/jdk17
+          export PATH=$JAVA_HOME/bin:$PATH
+          ```
+        - On Windows, set `JAVA_HOME` in the Environment Variables through System Properties.
+
+---
+
 ## Features
 
 - **File Picker:** Allows users to select files from their device.
