@@ -81,6 +81,9 @@ To use the `FilePickerWidget` in your Flutter app, follow these steps:
 
 ```dart
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 ```
 
