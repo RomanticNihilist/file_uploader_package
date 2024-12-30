@@ -28,7 +28,7 @@ dependencies:
 
 Alternatively, you can add it via the command line:
 
-```bash
+```sh
 flutter pub add file_picker
 ```
 
