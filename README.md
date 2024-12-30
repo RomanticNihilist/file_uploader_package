@@ -32,6 +32,12 @@ Alternatively, you can add it via the command line:
 flutter pub add file_picker
 ```
 
+Then run:
+
+```sh
+flutter pub get
+```
+
 ## Usage
 
 To use the `FilePickerWidget` in your Flutter app, follow these steps:
