@@ -80,10 +80,8 @@ To use the `FilePickerWidget` in your Flutter app, follow these steps:
 1. **Import the necessary packages:**
 
 ```dart
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:file_uploader_package/file_uploader_package.dart';
 
 ```
 
@@ -95,7 +93,10 @@ void main() {
     home: FilePickerWidget(),
   ));
 }
+```
+3. **Here is the code for the FilePickerWidget() widget but u don't have to write this code:**
 
+```dart
 class FilePickerWidget extends StatefulWidget {
   const FilePickerWidget({super.key});
 
@@ -199,7 +200,6 @@ class _FilePickerWidgetState extends State<FilePickerWidget> {
   }
 }
 ```
-
 ### Widget Breakdown
 
 1. **`FilePickerWidget`**: The main widget that displays a button to trigger the file picking process and lists the selected files.
