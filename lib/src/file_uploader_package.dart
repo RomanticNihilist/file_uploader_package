@@ -21,17 +21,17 @@ class FilePickerWidget extends StatefulWidget{
 
 class _FilePickerWidgetState extends State<FilePickerWidget>{
 
-  final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
-  String? _fileName;
-  List<PlatformFile>? _paths;
-  String? _extension;
-  final bool _multiPick = true;
-  final FileType _pickingType = FileType.any;
+  final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+  String? fileName;
+  List<PlatformFile>? paths;
+  String? extension;
+  final bool multiPick = true;
+  final FileType pickingType = FileType.any;
 
-  void _logException(String message) {
+  void logException(String message) {
     print(message);
-    _scaffoldMessengerKey.currentState?.hideCurrentSnackBar();
-    _scaffoldMessengerKey.currentState?.showSnackBar(
+    scaffoldMessengerKey.currentState?.hideCurrentSnackBar();
+    scaffoldMessengerKey.currentState?.showSnackBar(
       SnackBar(
         content: Text(
           message,
@@ -43,38 +43,38 @@ class _FilePickerWidgetState extends State<FilePickerWidget>{
     );
   }
 
-  void _resetState() {
+  void resetState() {
     if (!mounted) {
       return;
     }
     setState(() {
-      _fileName = null;
-      _paths = null;
+      fileName = null;
+      paths = null;
     });
   }
 
-  void _pickFiles() async {
-    _resetState();
+  void pickFiles() async {
+    resetState();
     try {
-      _paths = (await FilePicker.platform.pickFiles(
+      paths = (await FilePicker.platform.pickFiles(
         compressionQuality: 30,
-        type: _pickingType,
-        allowMultiple: _multiPick,
+        type: pickingType,
+        allowMultiple: multiPick,
         onFileLoading: (FilePickerStatus status) => print(status),
-        allowedExtensions: (_extension?.isNotEmpty ?? false)
-            ? _extension?.replaceAll(' ', '').split(',')
+        allowedExtensions: (extension?.isNotEmpty ?? false)
+            ? extension?.replaceAll(' ', '').split(',')
             : null,
       ))
           ?.files;
     } on PlatformException catch (e) {
-      _logException('Unsupported operation$e');
+      logException('Unsupported operation$e');
     } catch (e) {
-      _logException(e.toString());
+      logException(e.toString());
     }
     if (!mounted) return;
     setState(() {
-      _fileName =
-      _paths != null ? _paths!.map((e) => e.name).toString() : '...';
+      fileName =
+      paths != null ? paths!.map((e) => e.name).toString() : '...';
     });
   }
 
@@ -85,17 +85,17 @@ class _FilePickerWidgetState extends State<FilePickerWidget>{
       body: Center(
         child: Scrollbar(
           child: ListView.separated(
-            itemCount: _paths?.length ?? 1,
+            itemCount: paths?.length ?? 1,
             itemBuilder: (BuildContext context, int index) {
-              if (_paths == null || _paths!.isEmpty) {
+              if (paths == null || paths!.isEmpty) {
                 return const ListTile(
                   title: Text('No files selected'),
                 );
               }
 
-              final isMultiPath = _paths!.isNotEmpty;
-              final String name = 'File $index: ${isMultiPath ? _paths![index].name : _fileName ?? '...'}';
-              final path = kIsWeb ? null : _paths![index].path;
+              final isMultiPath = paths!.isNotEmpty;
+              final String name = 'File $index: ${isMultiPath ? paths![index].name : fileName ?? '...'}';
+              final path = kIsWeb ? null : paths![index].path;
 
               return ListTile(
                 title: Text(name),
@@ -107,7 +107,7 @@ class _FilePickerWidgetState extends State<FilePickerWidget>{
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: _pickFiles,
+        onPressed: pickFiles,
         icon: const Icon(Icons.add),
         label: const Text("Add Files"),
       ),
