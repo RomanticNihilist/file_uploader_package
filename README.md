@@ -106,7 +106,7 @@ class FilePickerWidget extends StatefulWidget{
    }
 }
 
-class _FilePickerWidgetState extends State<FilePickerWidget>{
+class FilePickerWidgetState extends State<FilePickerWidget>{
 
    final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
    String? fileName;

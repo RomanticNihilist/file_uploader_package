@@ -15,11 +15,11 @@ class FilePickerWidget extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _FilePickerWidgetState();
+    return FilePickerWidgetState();
   }
 }
 
-class _FilePickerWidgetState extends State<FilePickerWidget>{
+class FilePickerWidgetState extends State<FilePickerWidget>{
 
   final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
   String? fileName;
